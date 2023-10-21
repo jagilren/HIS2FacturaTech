@@ -1,0 +1,9 @@
+# Application Configuration
+[Credits]
+app_name = HIS Facturador Electrónico
+app_version = 1.0
+author = Campina Group
+
+[General]
+max_retries_fe = 200
+max_retries_nc = 200

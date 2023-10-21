@@ -1,0 +1,3 @@
+Factura: 26135  written in FacturaTech plattform at  2023-10-12 19:00:39.480829
+Factura: 26136  written in FacturaTech plattform at  2023-10-12 19:04:57.936381
+Factura: 26136  written in FacturaTech plattform at  2023-10-12 21:03:00.097083
