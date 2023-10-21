@@ -1,3 +1,4 @@
+#Commited to origin in GitHub Public Repository HIS2FacturaTech
 import logging
 import time
 import threading
