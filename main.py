@@ -2,6 +2,7 @@
 import logging
 import time
 import threading
+import argparse
 import os
 import pyodbc
 from decimal import Decimal
@@ -25,7 +26,8 @@ def mainUploadInvoiceRoutine():
             dictGroups, dictTotals, totalFactura = qmsaccess_defineTotals.RetrieveTotals(facturaNumero)
             if (dictGroups and dictTotals and totalFactura):
                 totalItems=str(len(dictGroups['IVA19'])+ len(dictGroups['IC08']))
-                facturaNumero='26136' #Solo para efectos de poder subir la información al DEMO de FacturaTech
+                #Pendiente comentar line
+                facturaNumero='26137' #Solo para efectos de poder subir la información al DEMO de FacturaTech
                 XMLBuilder.generateXML(xmlfile, facturaNumero,str(totalFactura),str(totalItems),  dictGroups, dictTotals)
                 base64Invoice = base64_generator.Base64XMLFile(xmlfile)
                 postStatusCode, transactionID = postUploadInvoice.postRequest(base64Invoice)
@@ -40,7 +42,7 @@ def mainUploadInvoiceRoutine():
             txtlogs.writeLog("Error to query facturaNumero")
     except Exception as e:
         logging.error(f"An unexpected error occurred in FacturaTech Service: {str(e)}")
-        facturaNumero = facturaNumero if fac
+        facturaNumero = facturaNumero
         txtlogs.writeLog
 
     else:
@@ -62,5 +64,4 @@ if __name__ == "__main__":
         except KeyboardInterrupt:
             print("Exiting...")
         finally:
-            print('Termina Routine')
-
+            print('Termina Routine', ' ', 'Continue Infinite Loop')
