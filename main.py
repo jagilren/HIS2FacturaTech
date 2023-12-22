@@ -17,20 +17,20 @@ def mainUploadInvoiceRoutine():
         #Query next Invoice for upload to Electronic Operator FacturaTech
         facturaNumero=qmsaccess_RetrievingQuery.traeFactura()
 
-        #Query retries for upload  Invoice forto Electronic Operator FacturaTech
+        #Query retries for upload  Invoice to Electronic Operator. FacturaTech
         facturaRetries= dbSqlite3.queryFacturaRetries(facturaNumero) if  dbSqlite3.queryFacturaRetries(facturaNumero) != None else 0
         #Get value of retries parameters from CONFIG.INI file
         retriesFE, retriesNC = inisettings.configRead()
-        #Verifies that factura exist and retries is in aceptable boundaries
+        #Verifythat factura exist and retries is in aceptable boundaries
         if (facturaNumero is not None) and (facturaRetries is None or facturaRetries < retriesFE):
             dictGroups, dictTotals, totalFactura = qmsaccess_defineTotals.RetrieveTotals(facturaNumero)
             if (dictGroups and dictTotals and totalFactura):
                 totalItems=str(len(dictGroups['IVA19'])+ len(dictGroups['IC08']))
                 #Pendiente comentar line
-                facturaNumero='26137' #Solo para efectos de poder subir la información al DEMO de FacturaTech
+                facturaNumero='26139' #Solo para efectos de poder subir la información al DEMO de FacturaTech
                 XMLBuilder.generateXML(xmlfile, facturaNumero,str(totalFactura),str(totalItems),  dictGroups, dictTotals)
                 base64Invoice = base64_generator.Base64XMLFile(xmlfile)
-                postStatusCode, transactionID = postUploadInvoice.postRequest(base64Invoice)
+                postStatusCode, transactionID = postUploadInvoice.postRequest(base64Invoice,facturaNumero)
                 if postStatusCode == 200:
                     code_response,signed_status,error_status= postDocumentStatusFile.postRequest(transactionID)
                     if code_response == str(201):
@@ -39,11 +39,12 @@ def mainUploadInvoiceRoutine():
                 dbSqlite3.insertUploadInvoiceRecord(facturaNumero,'FEFA', transactionID,'FE',totalFactura, reintentos)
                 respuestaEnvio = sendEmail(facturaNumero, transactionID,postStatusCode)
         else:
-            txtlogs.writeLog("Error to query facturaNumero")
+            txtlogs.writeLog(facturaNumero, "qmsaccess_RetrievingQuery.py not get Factura")
     except Exception as e:
         logging.error(f"An unexpected error occurred in FacturaTech Service: {str(e)}")
         facturaNumero = facturaNumero
-        txtlogs.writeLog
+        txtlogs.writeLog(facturaNumero,f'''Error main.mainUploadInvoiceRoutine {str(e)}
+                Error Conecting to web service resource''' )
 
     else:
         pass
@@ -60,7 +61,7 @@ if __name__ == "__main__":
             fe_upload_thread = threading.Thread(target=mainUploadInvoiceRoutine)
             fe_upload_thread.daemon = True  # Set it as a daemon thread
             fe_upload_thread.start()
-            time.sleep(20000)
+            time.sleep(20)
         except KeyboardInterrupt:
             print("Exiting...")
         finally:

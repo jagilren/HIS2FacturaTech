@@ -1,3 +1,4 @@
+import BoundaryHours
 import random
 import pyodbc
 from decimal import Decimal
@@ -12,7 +13,8 @@ def traeFactura():
         outlaw = -1
 
         # Execute a SQL query
-        query = "SELECT  [NUMERO FACTURA]  FROM [TOTALES] WHERE [TOTALES].[ISFE]= -1 ORDER BY [TOTALES].[NUMERO FACTURA] ASC"
+        query = '''SELECT  [NUMERO FACTURA]  FROM [TOTALES] WHERE [TOTALES].[ISFE]= -1 AND [TOTALES].[FacturaTeched]=0   
+                ORDER BY [TOTALES].[NUMERO FACTURA] ASC'''
         cursor.execute(query)
         rows = cursor.fetchall()
         facturaNumero: Decimal = Decimal(random.choice(rows)[ 0 ])

@@ -2,7 +2,6 @@ import pyodbc
 
 import txtlogs
 
-
 def updateTotalesFacturaTeched(facturaNumero):
     try:
         conn = pyodbc.connect('DSN=access2003DSN;')
@@ -17,9 +16,11 @@ def updateTotalesFacturaTeched(facturaNumero):
         cursor1.commit()
     except Exception as e:
         txtlogs.writeLog(facturaNumero, f'q_updateTotalesFacturaTech-{str(e)}')
+        return False
     else:
-        pass
-        # Close the cursor and connection
-    finally:
         cursor1.close()
         conn.close()
+        return True
+        # Close the cursor and connection
+    finally:
+        pass
