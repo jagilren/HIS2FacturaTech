@@ -9,6 +9,7 @@ account  pythonforsendmail@gmail.com
 pass:  bmaqjqoxdyhkogyc
 Encrypt Mode: SSL
 '''
+#SendMail Routine check jagilren@gmail.com not receive mails
 def sendEmail(facturaNumero, transactionID, postStatusCode):
     global smtp_server
     sender_email = "pythonforsendmail@gmail.com"
