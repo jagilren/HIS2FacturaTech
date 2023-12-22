@@ -4,6 +4,7 @@ import txtlogs
 
 def updateTotalesFacturaTeched(facturaNumero):
     try:
+        facturaNumero=1902
         conn = pyodbc.connect('DSN=access2003DSN;')
         # Create a cursor
         cursor1 = conn.cursor()
@@ -11,7 +12,7 @@ def updateTotalesFacturaTeched(facturaNumero):
 
         # Execute a SQL query
         query = f'''UPDATE  [TOTALES]  set [TOTALES].[FacturaTeched]={boolfacturaTeched} 
-                WHERE  [TOTALES].[FacturaTeched]='{facturaNumero} AND [TOTALES].[isFE]=-1'''
+                WHERE  [TOTALES].[Numero factura]={facturaNumero} AND [TOTALES].[isFE]=-1'''
         cursor1.execute(query)
         cursor1.commit()
     except Exception as e:

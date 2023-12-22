@@ -27,14 +27,14 @@ def mainUploadInvoiceRoutine():
             if (dictGroups and dictTotals and totalFactura):
                 totalItems=str(len(dictGroups['IVA19'])+ len(dictGroups['IC08']))
                 #Pendiente comentar line
-                facturaNumero='26139' #Solo para efectos de poder subir la información al DEMO de FacturaTech
+                facturaNumero='26141' #Solo para efectos de poder subir la información al DEMO de FacturaTech
                 XMLBuilder.generateXML(xmlfile, facturaNumero,str(totalFactura),str(totalItems),  dictGroups, dictTotals)
                 base64Invoice = base64_generator.Base64XMLFile(xmlfile)
                 postStatusCode, transactionID = postUploadInvoice.postRequest(base64Invoice,facturaNumero)
                 if postStatusCode == 200:
                     code_response,signed_status,error_status= postDocumentStatusFile.postRequest(transactionID)
                     if code_response == str(201):
-                        txtlogs.writeLog(facturaNumero)
+                        txtlogs.writeLog(facturaNumero, f'Factura subida correctamente a plataforma Proveedor de Facturación Electrónica')
                 reintentos = 1 if facturaRetries ==  None else facturaRetries + 1
                 dbSqlite3.insertUploadInvoiceRecord(facturaNumero,'FEFA', transactionID,'FE',totalFactura, reintentos)
                 respuestaEnvio = sendEmail(facturaNumero, transactionID,postStatusCode)
@@ -61,7 +61,7 @@ if __name__ == "__main__":
             fe_upload_thread = threading.Thread(target=mainUploadInvoiceRoutine)
             fe_upload_thread.daemon = True  # Set it as a daemon thread
             fe_upload_thread.start()
-            time.sleep(20)
+            time.sleep(20000)
         except KeyboardInterrupt:
             print("Exiting...")
         finally:
