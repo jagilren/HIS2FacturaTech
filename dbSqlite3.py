@@ -72,9 +72,9 @@ def queryFacturaRetries(facturaNumero):
                 results = cursor1.fetchall()
 
             if not results:
-                results=None
+                results = None
         except:
-            results= None
+            results = None
         else:
             cursor1.close()
             conn1.close()

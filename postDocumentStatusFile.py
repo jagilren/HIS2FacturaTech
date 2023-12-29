@@ -6,15 +6,15 @@ from inisettings import ReadEndPointProData, ReadEndPointDemoData
 #passwordDemo='502d77c7c1d5fa0f4495d104b29ad80cda2510238fb66ba7f107303317d49bc5'
 
 # Define the URL of the SOAP web service
-url, userPro, passPro = ReadEndPointDemoData()
-userNameDemo = userPro
-passwordDemo = passPro
+#url, userPro, passPro = ReadEndPointDemoData()
+#userNameDemo = userPro
+#passwordDemo = passPro
 
 # Define the headers for the POST request
 def postRequest(transactionID,url, userPro, passPro):
     headers = {
 
-        'SOAPAction': 'urn:https://ws.facturatech.co/v2/demo/#FtechAction.documentStatusFile',
+        'SOAPAction': f'urn:{url}#FtechAction.documentStatusFile',
         'Content-Type': 'text/xml; charset=utf-8'
     }
 

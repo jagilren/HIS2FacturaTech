@@ -61,3 +61,12 @@ Error main.mainUploadInvoiceRoutine name 'userEndPoint' is not defined
 Error main.mainUploadInvoiceRoutine postRequest() missing 3 required positional arguments: 'url', 'userPro', and 'passPro'
                 Error Conecting to web service resource--Factura: 26146  2023-12-29 08:16:30.063438
 Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26146  2023-12-29 08:20:13.196075
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26147  2023-12-29 08:40:02.405603
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26148  2023-12-29 08:43:48.701911
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26148  2023-12-29 08:48:33.575695
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26149  2023-12-29 08:50:14.097943
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26149  2023-12-29 09:26:15.363553
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26149  2023-12-29 09:26:17.925621
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26150  2023-12-29 09:27:53.665117
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26150  2023-12-29 09:38:31.473905
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26151  2023-12-29 09:41:30.876903

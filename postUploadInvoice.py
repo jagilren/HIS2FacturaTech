@@ -15,7 +15,7 @@ from inisettings import ReadEndPointProData, ReadEndPointDemoData
 # Define the headers for the POST request
 def postRequest(base64Invoice,facturaNumero,url, userPro, passPro):
     headers = {
-        'SOAPAction': 'urn:https://ws.facturatech.co/v2/demo/#FtechAction.uploadInvoiceFile',
+        'SOAPAction': f'urn:{url}#FtechAction.uploadInvoiceFile',
         'Content-Type': 'text/xml; charset=utf-8'
     }
 
