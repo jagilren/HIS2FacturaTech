@@ -70,8 +70,9 @@ def queryFacturaRetries(facturaNumero):
                 cursor1.execute(f"SELECT retriesfee FROM INVOICES WHERE invoicenumber = '{facturaNumero}'")
                 conn1.commit()
                 results = cursor1.fetchall()
+                results = 0 if results == None else results[0][0]
 
-            if not results:
+            if  results is None:
                 results = None
         except:
             results = None

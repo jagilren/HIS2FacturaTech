@@ -56,6 +56,7 @@ def ReadEndPointDemoData():
         endPointDemo = str(config.get('EndpointDemo', 'urlDemo'))
         userDemo = str(config.get('EndpointDemo', 'userDemo'))
         passDemo = str(config.get('EndpointDemo', 'passDemo'))
+        NumeroAutorizacion=str(config.get('EndpointDemo', 'passDemo'))
     except:
         return None
     finally:

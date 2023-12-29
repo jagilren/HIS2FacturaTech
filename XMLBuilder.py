@@ -1,31 +1,44 @@
 import datetime
 import xml.etree.ElementTree as ET
-
+import inisettings
 import pytz
+import configparser
+import codecs
 
-#Variables
-NitEmisor='901143311'
-digitoVerificador= '8'
-razonSocialEmisor= 'Inversiones Faroz SAS'
-nombreComercialEmisor= 'Inversiones Faroz SAS'
-direccionEmisor= "Calle 51 # 69-47"
-nombreAdquiriente= 'Final consumidor'
-nitConsumidorFinal= '222222222222'
-prefijoFE= 'TCFA'
-currencyType='COP'
-nombreCiudad= "MEDELLIN"
-nombreDepartamento= "ANTIOQUIA"
-nombrePais= 'COLOMBIA'
-codigoMunicipio= '05001'
-codigoDepartamento= "05"
-codigoPais= 'CO'
-CodigoPostal='050021'
-numeroMatriculaMercantilEmi= '377777'
-numeroMatriculaMercantilAdq= '777777'
-numeroAutorizacion= '201911110152'
-personaContacto= "Giovani Rozo"
-movilContacto= '3168368178'
-mailContacto= 'sistemas@inversionesler.co'
+
+with codecs.open('config.txt', 'r', encoding='utf-8') as file:
+        config = configparser.ConfigParser()
+        config.read_file(file)
+#Pendiente de Revisión
+selectedSesion = 'CIA'
+
+NitEmisor = str(config.get(selectedSesion, 'NitEmisor'))
+digitoVerificador= str(config.get(selectedSesion, 'digitoVerificador'))
+razonSocialEmisor= str(config.get(selectedSesion, 'razonSocialEmisor'))
+nombreComercialEmisor= str(config.get(selectedSesion, 'nombreComercialEmisor'))
+direccionEmisor= str(config.get(selectedSesion, 'direccionEmisor'))
+nombreAdquiriente= str(config.get(selectedSesion, 'nombreAdquiriente'))
+nitConsumidorFinal= str(config.get(selectedSesion, 'nitConsumidorFinal'))
+prefijoFE= str(config.get(selectedSesion, 'prefijoFE'))
+currencyType=str(config.get(selectedSesion, 'currencyType'))
+nombreCiudad= str(config.get(selectedSesion, 'nombreCiudad'))
+nombreDepartamento= str(config.get(selectedSesion, 'nombreDepartamento'))
+nombrePais= str(config.get(selectedSesion, 'nombrePais'))
+codigoMunicipio= str(config.get(selectedSesion, 'codigoMunicipio'))
+codigoDepartamento= str(config.get(selectedSesion, 'codigoDepartamento'))
+codigoPais= str(config.get(selectedSesion, 'codigoPais'))
+CodigoPostal= str(config.get(selectedSesion, 'CodigoPostal'))
+numeroMatriculaMercantilEmi= str(config.get(selectedSesion, 'numeroMatriculaMercantilEmi'))
+numeroMatriculaMercantilAdq= str(config.get(selectedSesion, 'numeroMatriculaMercantilAdq'))
+Ambiente = str(config.get(selectedSesion, 'Ambiente'))
+numeroAutorizacion= str(config.get(selectedSesion, 'numeroAutorizacion'))
+FechaIniAutorizacion= str(config.get(selectedSesion, 'FechaIniAutorizacion'))
+facturaInicial= str(config.get(selectedSesion, 'facturaInicial'))
+FechaFinAutorizacion= str(config.get(selectedSesion, 'FechaFinAutorizacion'))
+facturaFinal= str(config.get(selectedSesion, 'facturaFinal'))
+personaContacto= str(config.get(selectedSesion, 'personaContacto'))
+movilContacto= str(config.get(selectedSesion, 'movilContacto'))
+mailContacto= str(config.get(selectedSesion, 'mailContacto'))
 tzinfo = datetime.timezone.utc
 tzdelta= '-05:00'
 local_time=datetime.datetime.now()
@@ -45,7 +58,7 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
     # Create and append the ENC element
     enc = ET.SubElement(root, "ENC")
     ET.SubElement(enc, "ENC_1").text = "INVOIC" #Tipo de documento
-    ET.SubElement(enc, "ENC_2").text = "901143311" #Nit Emisor
+    ET.SubElement(enc, "ENC_2").text = NitEmisor
     ET.SubElement(enc, "ENC_3").text = "222222222222" #Nit Adquiriente
     ET.SubElement(enc, "ENC_4").text = "UBL 2.1" #Version del esquema UBL
     ET.SubElement(enc, "ENC_5").text = "DIAN 2.1" #Version del Formato del Documento
@@ -55,8 +68,8 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
     ET.SubElement(enc, "ENC_9").text = '01' #Tipo de Factura
     ET.SubElement(enc, "ENC_10").text = currencyType  #Tipo de Moneda
     ET.SubElement(enc, "ENC_15").text = totalItems #Número de Productos Global
-    ET.SubElement(enc, "ENC_20").text = '02' #Ambiente 01:Production, 02:Demo
-    ET.SubElement(enc, "ENC_21").text = '10' #Tipo de Operacion  (10 Estandard
+    ET.SubElement(enc, "ENC_20").text = Ambiente #Ambiente 01:Production, 02:Demo
+    ET.SubElement(enc, "ENC_21").text = '10' #Tipo de Operacion  (10 Estandard)
 
 
     # Create and append the EMI element Emisor Information
@@ -157,9 +170,9 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
     #Create and append the CDA element Información del Adquiriente
     cda = ET.SubElement(adq, "CDA")
     ET.SubElement(cda, "CDA_1").text ='1' #Tipo de Contacto
-    ET.SubElement(cda, "CDA_2").text ='HECTOR CAMPUZANO' #Nombre y Cargo de la Persona de Contacto
+    ET.SubElement(cda, "CDA_2").text ='CARLOS MARIO CARDONA' #Nombre y Cargo de la Persona de Contacto
     ET.SubElement(cda, "CDA_3").text ='3168368181' #Teléfono de la Persona de Contacto
-    ET.SubElement(cda, "CDA_4").text ='jagilren@outlook.com' #Correo Electrónico de la Persona de Contacto
+    ET.SubElement(cda, "CDA_4").text ='carloscardona@outlook.com' #Correo Electrónico de la Persona de Contacto
 
     #Create and append the GTA element  Detalles Tributarios del Adquiriente
     gta = ET.SubElement(adq, "GTA")
@@ -215,11 +228,11 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
     datosResolucion = ET.SubElement(root, "DRF")
 
     ET.SubElement(datosResolucion, "DRF_1").text = numeroAutorizacion  # Número de Autorización
-    ET.SubElement(datosResolucion, "DRF_2").text = '2019-11-11' #Fecha de Inicio Perido de Autorizacion
-    ET.SubElement(datosResolucion, "DRF_3").text = '2030-12-31' #Fecha de Fin  Perido de Autorizacion
-    ET.SubElement(datosResolucion, "DRF_4").text = 'TCFA' #Prefijo
-    ET.SubElement(datosResolucion, "DRF_5").text = '26101' #Rango de Numeración (Mínimo)
-    ET.SubElement(datosResolucion, "DRF_6").text = '26200' #Rango de Numeración (Maximo)
+    ET.SubElement(datosResolucion, "DRF_2").text = FechaIniAutorizacion  #Fecha de Inicio Periodo de Autorizacion
+    ET.SubElement(datosResolucion, "DRF_3").text = FechaFinAutorizacion #Fecha de Fin  Periodo de Autorizacion
+    ET.SubElement(datosResolucion, "DRF_4").text = prefijoFE
+    ET.SubElement(datosResolucion, "DRF_5").text = facturaInicial #Rango de Numeración (Mínimo)
+    ET.SubElement(datosResolucion, "DRF_6").text = facturaFinal #Rango de Numeración (Maximo)
 
     medioPago = ET.SubElement(root, "MEP")
     ET.SubElement(medioPago, "MEP_1").text='10'  #Medio de Pago (Tabla 5) 7:Debito, 10:Efectivo

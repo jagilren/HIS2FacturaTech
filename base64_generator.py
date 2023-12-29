@@ -1,5 +1,7 @@
+import pyperclip
 import hashlib
 import base64
+
 
 def basic_auth(input_string):
     # Encode the string as bytes (UTF-8 encoding)
@@ -30,12 +32,14 @@ def Base64XMLFile(xmlfile):
     if output_base64_file:
         with open(output_base64_file, 'w') as base64_file:
             base64_file.write(base64_encoded)
-        #print(f"Base64-encoded XML saved to {output_base64_file}")
+        pyperclip.copy(base64_encoded)
+        print("Base64-encoded XML:")
+        print(base64_encoded)
         return base64_encoded
     else:
         pass
-        #print("Base64-encoded XML:")
-        #print(base64_encoded)
+        print("Base64-encoded XML:")
+        print(base64_encoded)
 
 
 #print(basic_auth('sandboxws*'))

@@ -43,7 +43,7 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
             if (dictGroups and dictTotals and totalFactura):
                 totalItems=str(len(dictGroups['IVA19'])+ len(dictGroups['IC08']))
                 #Pendiente comentar line
-                facturaNumero='26151' #Solo para efectos de poder subir la información al DEMO de FacturaTech
+                facturaNumero='26154' #Solo para efectos de poder subir la información al DEMO de FacturaTech
                 XMLBuilder.generateXML(xmlfile, facturaNumero,str(totalFactura),str(totalItems),  dictGroups, dictTotals)
                 base64Invoice = base64_generator.Base64XMLFile(xmlfile)
                 postStatusCode, transactionID = postUploadInvoice.postRequest(base64Invoice,facturaNumero,url, userPro, passPro)
@@ -61,7 +61,7 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
                 reintentos =  0 if reintentos == None else reintentos[0][0]
                 if reintentos == 0:
                     #"Pendiente de revisión"
-                    dbSqlite3.insertUploadInvoiceRecord(facturaNumero,'FEFA', transactionID,'FE',totalFactura, reintentos)
+                    dbSqlite3.insertUploadInvoiceRecord(facturaNumero,'FEIF', transactionID,'FE',totalFactura, reintentos)
                 else:
                     dbSqlite3.sqliteUpdateFacturaRetries(facturaNumero)
                     if reintentos >= int(facturaRetries):
@@ -87,12 +87,14 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
 
 if __name__ == "__main__":
 
+    #url, userPro, passPro = inisettings.ReadEndPointDemoData()
     url, userPro, passPro = inisettings.ReadEndPointDemoData()
-    #url, userPro, passPro = inisettings.ReadEndPointProData()
     while True:
         mainUploadInvoiceRoutine(url, userPro, passPro)
         time.sleep(60)
+        print('Comienza conteo de Veinte mil segundos')
         time.sleep(20000)
+        #No necessary use of threads
         '''try:
             fe_upload_thread = threading.Thread(target=mainUploadInvoiceRoutine, args=(url, userPro, passPro),name='fe_upload_thread')
             fe_upload_thread.daemon = True  # Set it as a daemon thread

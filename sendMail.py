@@ -23,10 +23,11 @@ def sendEmailTruePositivo(facturaNumero, transactionID, postStatusCode):
 
     # Set the email subject
     if postStatusCode==200 and transactionID:
-        message["Subject"] = "Factura"  + " " + facturaNumero + " " + "Subida a FacturaTech"
-        body = "succesfull operation  method uploadInvoiceFile at::" + f'{datetime.datetime.now()}'
+        message["Subject"] = "Factura"  + " " + f'{facturaNumero}' + " " + "Subida a FacturaTech"
+        body = "succesfully operation  method uploadInvoiceFile at::" + f'{datetime.datetime.now()}'
     else:
-        message["Subject"] = "Fallo en envío Factura"  + " " + facturaNumero + " " + "Transacción No generarada"     # Set the sender's email address
+        message["Subject"] = "Fallo en envío Factura"  + " " + f'{facturaNumero}' + " " + "Transacción No generarada" # Set the sender's email address
+        body = "Failed operation  method uploadInvoiceFile at::" + f'{datetime.datetime.now()}'
     message["From"] = "jagilren@gmail.com"
     # Set the recipient's email address
     message["To"] = "sistemas@inversionesler.co"

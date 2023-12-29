@@ -3,15 +3,6 @@ import requests
 import q_updateTotalesFacturaTeched
 from inisettings import ReadEndPointProData, ReadEndPointDemoData
 
-
-'''#url, userPro, passPro  = ReadEndPointDemoData()
-#Define Variables Globales
-#url = url
-#userEndPoint= userPro
-#passwordEndPoint= passPro
-# Define the URL of the SOAP web service'''
-
-
 # Define the headers for the POST request
 def postRequest(base64Invoice,facturaNumero,url, userPro, passPro):
     headers = {
@@ -39,7 +30,7 @@ def postRequest(base64Invoice,facturaNumero,url, userPro, passPro):
 
     # Check the response status and content
     if response.status_code == 200:
-        #print(response.text)
+        print(response.text)
         #print(response.status_code)
         #print("Request succeeded. Response content:")
         root = ET.fromstring(response.text)

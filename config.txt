@@ -1,4 +1,5 @@
 # Application Configuration
+
 [Credits]
 app_name = HIS Facturador Electrónico
 app_version = 1.0
@@ -19,6 +20,64 @@ urlDemo = https://ws.facturatech.co/v2/demo/
 urlDemo1 = https://ws.facturatech.co/v2/demo/index.php?wsdl
 userDemo = GAMA070223
 passDemo = 502d77c7c1d5fa0f4495d104b29ad80cda2510238fb66ba7f107303317d49bc5
+
+[CIA]
+NitEmisor = 901143311
+digitoVerificador = 8
+razonSocialEmisor = Inversiones Faroz SAS
+nombreComercialEmisor = Inversiones Faroz SAS
+direccionEmisor = Calle 51 # 69-47
+nombreAdquiriente = Final consumidor
+nitConsumidorFinal = 222222222222
+prefijoFE = TCFA
+currencyType = COP
+nombreCiudad = MEDELLIN
+nombreDepartamento = ANTIOQUIA
+nombrePais = COLOMBIA
+codigoMunicipio = 05001
+codigoDepartamento = 05
+codigoPais = CO
+CodigoPostal = 050021
+numeroMatriculaMercantilEmi = 377777
+numeroMatriculaMercantilAdq = 777777
+Ambiente = 02
+numeroAutorizacion = 201911110152
+fechaIniAutorizacion = 2019-11-11
+facturaInicial = 26101
+fechaFinAutorizacion = 2030-12-31
+facturaFinal = 26200
+personaContacto = Giovani Rozo
+movilContacto = 3168368178
+mailContacto= 'sistemas@inversionesler.co'
+
+[CIA1]
+NitEmisor=811014293
+digitoVerificador= 4
+razonSocialEmisor= Inversiones Faroz SAS
+nombreComercialEmisor= Inversiones Faroz SAS
+direccionEmisor= Calle 51 # 69-47
+nombreAdquiriente= Final consumidor
+nitConsumidorFinal= 222222222222
+prefijoFE= FEIF
+currencyType=COP
+nombreCiudad= MEDELLIN
+nombreDepartamento= ANTIOQUIA
+nombrePais= COLOMBIA
+codigoMunicipio= 05001
+codigoDepartamento= 05
+codigoPais= CO
+CodigoPostal=050021
+numeroMatriculaMercantilEmi= 377777
+numeroMatriculaMercantilAdq= 777777
+Ambiente = 01
+numeroAutorizacion= 18764047417665
+FechaIniAutorizacion = 2023-04-12
+facturaInicial = 51
+FechaFinAutorizacion = 2024-04-12
+facturaFinal = 10000
+personaContacto= Giovani Rozo
+movilContacto= 3168368178
+mailContacto= 'sistemas@inversionesler.co'
 
 [others]
 urn = https://ws.facturatech.co/v2/demo/

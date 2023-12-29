@@ -70,3 +70,18 @@ Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--
 Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26150  2023-12-29 09:27:53.665117
 Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26150  2023-12-29 09:38:31.473905
 Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26151  2023-12-29 09:41:30.876903
+Error main.mainUploadInvoiceRoutine name 'prefijoFE' is not defined
+                Error Conecting to web service resource--Factura: 26152  2023-12-29 12:18:16.128597
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26152  2023-12-29 12:32:13.040568
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26153  2023-12-29 12:57:47.289627
+Factura No pudos ser Cargada a plataforma Proveedor de Facturación Electrónica--Factura: 1984  2023-12-29 14:00:46.926125
+Error main.mainUploadInvoiceRoutine '<' not supported between instances of 'list' and 'int'
+                Error Conecting to web service resource--Factura: 1984  2023-12-29 14:03:44.081270
+Error main.mainUploadInvoiceRoutine '<' not supported between instances of 'list' and 'int'
+                Error Conecting to web service resource--Factura: 1984  2023-12-29 14:04:04.295551
+Error main.mainUploadInvoiceRoutine '<' not supported between instances of 'list' and 'int'
+                Error Conecting to web service resource--Factura: 1984  2023-12-29 14:04:18.922104
+Error main.mainUploadInvoiceRoutine '<' not supported between instances of 'list' and 'int'
+                Error Conecting to web service resource--Factura: 1984  2023-12-29 14:08:12.410210
+Factura No pudos ser Cargada a plataforma Proveedor de Facturación Electrónica--Factura: 1982  2023-12-29 16:39:36.331332
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26154  2023-12-29 17:58:21.149270
