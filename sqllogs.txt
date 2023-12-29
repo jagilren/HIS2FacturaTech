@@ -17,3 +17,47 @@ Error main.mainUploadInvoiceRoutine writeLog() missing 1 required positional arg
 q_updateTotalesFacturaTech-('42000', "[42000] [Microsoft][Controlador ODBC Microsoft Access] Error de sintaxis en la cadena en la expresión de consulta '[TOTALES].[FacturaTeched]='1902 AND [TOTALES].[isFE]=-1'. (-3100) (SQLExecDirectW)")--Factura: 1902  2023-12-21 20:47:43.216216
 Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26140  2023-12-21 20:51:41.875394
 Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26141  2023-12-21 20:54:46.606296
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26142  2023-12-27 17:41:56.805513
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26143  2023-12-27 17:45:45.259942
+Error main.mainUploadInvoiceRoutine postRequest() missing 1 required positional argument: 'url'
+                Error Conecting to web service resource--Factura: 26144  2023-12-28 20:39:38.198233
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:40:52.180666
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:40:56.841872
+Error main.mainUploadInvoiceRoutine postRequest() missing 1 required positional argument: 'url'
+                Error Conecting to web service resource--Factura: 26144  2023-12-28 20:40:56.845920
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:41:02.040197
+Error main.mainUploadInvoiceRoutine postRequest() missing 1 required positional argument: 'url'
+                Error Conecting to web service resource--Factura: 26144  2023-12-28 20:41:02.041756
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:41:07.110903
+Error main.mainUploadInvoiceRoutine postRequest() missing 1 required positional argument: 'url'
+                Error Conecting to web service resource--Factura: 26144  2023-12-28 20:41:07.117701
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:41:12.086919
+Error main.mainUploadInvoiceRoutine postRequest() missing 1 required positional argument: 'url'
+                Error Conecting to web service resource--Factura: 26144  2023-12-28 20:41:12.090460
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:49:28.867720
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:49:33.867887
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:49:38.760175
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:49:43.762310
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:49:48.873325
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:49:53.925547
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:49:58.904852
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:50:04.008129
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:50:08.624415
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:50:13.828410
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:50:18.574128
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:50:23.817044
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26144  2023-12-28 20:50:26.703281
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26145  2023-12-28 20:52:22.911797
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26145  2023-12-29 02:24:56.918068
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 26145  2023-12-29 07:03:09.384294
+Error main.mainUploadInvoiceRoutine name 'userEndPoint' is not defined
+                Error Conecting to web service resource--Factura: 26145  2023-12-29 08:08:48.922587
+Error main.mainUploadInvoiceRoutine name 'userEndPoint' is not defined
+                Error Conecting to web service resource--Factura: 26145  2023-12-29 08:10:25.585699
+Error main.mainUploadInvoiceRoutine name 'userEndPoint' is not defined
+                Error Conecting to web service resource--Factura: 26146  2023-12-29 08:11:55.486701
+Error main.mainUploadInvoiceRoutine name 'userEndPoint' is not defined
+                Error Conecting to web service resource--Factura: 26146  2023-12-29 08:11:57.826565
+Error main.mainUploadInvoiceRoutine postRequest() missing 3 required positional arguments: 'url', 'userPro', and 'passPro'
+                Error Conecting to web service resource--Factura: 26146  2023-12-29 08:16:30.063438
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 26146  2023-12-29 08:20:13.196075

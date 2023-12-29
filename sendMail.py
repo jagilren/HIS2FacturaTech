@@ -9,21 +9,24 @@ account  pythonforsendmail@gmail.com
 pass:  bmaqjqoxdyhkogyc
 Encrypt Mode: SSL
 '''
+
+global smtp_server
+sender_email = "pythonforsendmail@gmail.com"
+sender_password = "bmaqjqoxdyhkogyc"
+
+
 #SendMail Routine check jagilren@gmail.com not receive mails
-def sendEmail(facturaNumero, transactionID, postStatusCode):
-    global smtp_server
-    sender_email = "pythonforsendmail@gmail.com"
-    sender_password = "bmaqjqoxdyhkogyc"
+def sendEmailTruePositivo(facturaNumero, transactionID, postStatusCode):
 
     # Create a message object
     message = MIMEMultipart()
 
     # Set the email subject
-    if postStatusCode==200:
+    if postStatusCode==200 and transactionID:
         message["Subject"] = "Factura"  + " " + facturaNumero + " " + "Subida a FacturaTech"
         body = "succesfull operation  method uploadInvoiceFile at::" + f'{datetime.datetime.now()}'
     else:
-        message["Subject"] = "Fallo en envío Factura"  + " " + facturaNumero     # Set the sender's email address
+        message["Subject"] = "Fallo en envío Factura"  + " " + facturaNumero + " " + "Transacción No generarada"     # Set the sender's email address
     message["From"] = "jagilren@gmail.com"
     # Set the recipient's email address
     message["To"] = "sistemas@inversionesler.co"
@@ -41,6 +44,7 @@ def sendEmail(facturaNumero, transactionID, postStatusCode):
         smtp_server.login(sender_email, sender_password)
         # Send the email
         smtp_server.sendmail(sender_email, message["To"], message.as_string())
+        return "email enviado"
 
     except:
         return "email no enviado"

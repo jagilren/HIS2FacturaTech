@@ -7,3 +7,18 @@ author = Campina Group
 [General]
 max_retries_fe = 200
 max_retries_nc = 200
+
+[EndpointPro]
+urlPro = https://ws.facturatech.co/v2/pro/
+urlPro1 = https://ws.facturatech.co/v2/pro/index.php?wsdl
+userPro = 811014293
+passPro = bbfc4538a0fbb92eab324771727f183054374195ca0cd331eda68d421da50ac2
+
+[EndpointDemo]
+urlDemo = https://ws.facturatech.co/v2/demo/
+urlDemo1 = https://ws.facturatech.co/v2/demo/index.php?wsdl
+userDemo = GAMA070223
+passDemo = 502d77c7c1d5fa0f4495d104b29ad80cda2510238fb66ba7f107303317d49bc5
+
+[others]
+urn = https://ws.facturatech.co/v2/demo/

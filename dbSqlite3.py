@@ -82,16 +82,32 @@ def queryFacturaRetries(facturaNumero):
             return results
 
 
-def UpdateFacturaRetries(facturaNumero):
+def sqliteUpdateFacturaRetries(facturaNumero):
     try:
-        cursor1.execute(f'UPDATE  INVOICES SET retriesfe=retriesfe+1  WHERE invoicenumber = {facturaNumero}')
+        conn1, cursor1 = connectDB()
+        cursor1.execute(f'UPDATE  INVOICES SET retriesfee=retriesfee+1  WHERE invoicenumber = {facturaNumero}')
         conn1.commit()
 
+
     except:
-        pass
+        return False
     else:
         cursor1.close()
         conn1.close()
+        return True
     finally:
         pass
 
+def sqliteUpdateExhaustRetriesFT(facturaNumero):
+    try:
+        conn1, cursor1 = connectDB()
+        cursor1.execute(f'UPDATE  INVOICES SET exhaustedRetriesFT=-1  WHERE invoicenumber = {facturaNumero}')
+        conn1.commit()
+    except:
+        return False
+    else:
+        cursor1.close()
+        conn1.close()
+        return True
+    finally:
+        pass

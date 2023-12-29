@@ -1,14 +1,17 @@
 import xml.etree.ElementTree as ET
 import requests
+from inisettings import ReadEndPointProData, ReadEndPointDemoData
 #Define Variables Globales
-userNameDemo='GAMA070223'
-passwordDemo='502d77c7c1d5fa0f4495d104b29ad80cda2510238fb66ba7f107303317d49bc5'
+#userNameDemo='GAMA070223'
+#passwordDemo='502d77c7c1d5fa0f4495d104b29ad80cda2510238fb66ba7f107303317d49bc5'
 
 # Define the URL of the SOAP web service
-url = 'https://ws.facturatech.co/v2/demo/index.php?wsdl'
+url, userPro, passPro = ReadEndPointDemoData()
+userNameDemo = userPro
+passwordDemo = passPro
 
 # Define the headers for the POST request
-def postRequest(transactionID):
+def postRequest(transactionID,url, userPro, passPro):
     headers = {
 
         'SOAPAction': 'urn:https://ws.facturatech.co/v2/demo/#FtechAction.documentStatusFile',
@@ -20,9 +23,9 @@ def postRequest(transactionID):
     soap_request = f'''
     <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
         <Body>
-            <FtechAction.documentStatusFile xmlns="urn:https://ws.facturatech.co/v2/demo/">
-                <username>{userNameDemo}</username>
-                <password>{passwordDemo}</password>
+            <FtechAction.documentStatusFile xmlns="urn:{url}">
+                <username>{userPro}</username>
+                <password>{passPro}</password>
                 <transaccionID>{transactionID}</transaccionID>
             </FtechAction.documentStatusFile>
         </Body>
