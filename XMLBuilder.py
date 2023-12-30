@@ -10,7 +10,7 @@ with codecs.open('config.txt', 'r', encoding='utf-8') as file:
         config = configparser.ConfigParser()
         config.read_file(file)
 #Pendiente de Revisión
-selectedSesion = 'CIA'
+selectedSesion = 'CIA1'
 
 NitEmisor = str(config.get(selectedSesion, 'NitEmisor'))
 digitoVerificador= str(config.get(selectedSesion, 'digitoVerificador'))

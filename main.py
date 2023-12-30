@@ -43,7 +43,7 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
             if (dictGroups and dictTotals and totalFactura):
                 totalItems=str(len(dictGroups['IVA19'])+ len(dictGroups['IC08']))
                 #Pendiente comentar line
-                facturaNumero='26154' #Solo para efectos de poder subir la información al DEMO de FacturaTech
+                #facturaNumero='26154' #Solo para efectos de poder subir la información al DEMO de FacturaTech
                 XMLBuilder.generateXML(xmlfile, facturaNumero,str(totalFactura),str(totalItems),  dictGroups, dictTotals)
                 base64Invoice = base64_generator.Base64XMLFile(xmlfile)
                 postStatusCode, transactionID = postUploadInvoice.postRequest(base64Invoice,facturaNumero,url, userPro, passPro)
@@ -87,8 +87,8 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
 
 if __name__ == "__main__":
 
+    url, userPro, passPro = inisettings.ReadEndPointProData()
     #url, userPro, passPro = inisettings.ReadEndPointDemoData()
-    url, userPro, passPro = inisettings.ReadEndPointDemoData()
     while True:
         mainUploadInvoiceRoutine(url, userPro, passPro)
         time.sleep(60)
