@@ -81,6 +81,3 @@ mailContacto= 'sistemas@inversionesler.co'
 
 [others]
 urn = https://ws.facturatech.co/v2/demo/
-
-[new_brach]
-text = Hello world
