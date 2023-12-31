@@ -33,8 +33,8 @@ def Base64XMLFile(xmlfile):
         with open(output_base64_file, 'w') as base64_file:
             base64_file.write(base64_encoded)
         pyperclip.copy(base64_encoded)
-        print("Base64-encoded XML:")
-        print(base64_encoded)
+        #print("Base64-encoded XML:")
+        #print(base64_encoded)
         return base64_encoded
     else:
         pass

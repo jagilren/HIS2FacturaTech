@@ -48,7 +48,8 @@ fechaFinAutorizacion = 2030-12-31
 facturaFinal = 26200
 personaContacto = Giovani Rozo
 movilContacto = 3168368178
-mailContacto= 'sistemas@inversionesler.co'
+mailContacto= sistemas@inversionesler.co
+DireccionFisica = Calle 51 # 69 - 47
 
 [CIA1]
 NitEmisor=811014293
@@ -77,7 +78,8 @@ FechaFinAutorizacion = 2024-04-12
 facturaFinal = 10000
 personaContacto= Giovani Rozo
 movilContacto= 3168368178
-mailContacto= 'sistemas@inversionesler.co'
+mailContacto= sistemas@inversionesler.co
+DireccionFisica = Calle 51 # 69 - 47
 
 [others]
 urn = https://ws.facturatech.co/v2/demo/

@@ -43,12 +43,12 @@ def insertUploadInvoiceRecord(facturaNumero, invoicePrefix,  transactionID,docum
             pass
 
         try:
-            invoice_data = (f"{facturaNumero}", f"{invoicePrefix}",f"{transactionID}",f'{documentType}', f'{totalFactura}', reintentos, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            invoice_data = (f"{facturaNumero}", f"{invoicePrefix}",f"{transactionID}",f'{documentType}', f'{totalFactura}', 0, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             cursor1.execute("INSERT INTO INVOICES (invoicenumber, invoiceprefix, transactionid,documenttype, invoiceamount, retriesfee, fecha) VALUES (?, ?, ?, ?, ?, ?, ?)", invoice_data)
             conn1.commit()
             #results = cursor1.fetchall()
-        except:
-            pass
+        except Exception as e:
+            print(f'({str(e)}')
         else:
             cursor1.close()
             conn1.close()

@@ -21,7 +21,7 @@ def getDocumentRetries():
     try:
         facturaNumero= getfacturaNumero()
         # Query retries for upload  Invoice to Electronic Operator. FacturaTech
-        facturaRetries = dbSqlite3.queryFacturaRetries(facturaNumero) if dbSqlite3.queryFacturaRetries(facturaNumero) != None else 0
+        #facturaRetries = dbSqlite3.queryFacturaRetries(facturaNumero) if dbSqlite3.queryFacturaRetries(facturaNumero) != None else 0
         # Get value of retries parameters from CONFIG.INI file
         retriesFE, retriesNC = inisettings.configRead()
         return retriesFE, retriesNC
@@ -29,6 +29,13 @@ def getDocumentRetries():
         retriesFE = retriesNC =None
         return retriesFE, retriesNC
 
+def getReintentosUploaadFactura(facturaNumero):
+    try:
+        results = dbSqlite3.queryFacturaRetries(facturaNumero)
+    except:
+        return None
+    else:
+        return results
 
 def mainUploadInvoiceRoutine(url, userPro, passPro):
 
@@ -36,14 +43,15 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
         xmlfile = 'outputxml1.xml'
         facturaNumero = getfacturaNumero()
         retriesFE, retriesNC = getDocumentRetries()
-        facturaRetries = dbSqlite3.queryFacturaRetries(facturaNumero)
+        reintentos = getReintentosUploaadFactura(facturaNumero)
+        reintentos = -1 if reintentos is None else reintentos
         #Verifythat factura exist and retries is in aceptable boundaries
-        if (facturaNumero is not None) and (facturaRetries is None or facturaRetries < retriesFE):
+        if (facturaNumero is not None) and (reintentos is None or reintentos < retriesFE):
             dictGroups, dictTotals, totalFactura = qmsaccess_defineTotals.RetrieveTotals(facturaNumero)
             if (dictGroups and dictTotals and totalFactura):
                 totalItems=str(len(dictGroups['IVA19'])+ len(dictGroups['IC08']))
                 #Pendiente comentar line
-                facturaNumero='26155' #Solo para efectos de poder subir la información al DEMO de FacturaTech
+                #facturaNumero='26155' #Solo para efectos de poder subir la información al DEMO de FacturaTech
                 XMLBuilder.generateXML(xmlfile, facturaNumero,str(totalFactura),str(totalItems),  dictGroups, dictTotals)
                 base64Invoice = base64_generator.Base64XMLFile(xmlfile)
                 postStatusCode, transactionID = postUploadInvoice.postRequest(base64Invoice,facturaNumero,url, userPro, passPro)
@@ -57,18 +65,18 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
                     txtlogs.writeLog(facturaNumero,
                                      f'Factura No pudos ser Cargada a plataforma Proveedor de Facturación Electrónica')
                 #Revisa cuantas veces se ha reintentado subir la factura a Plataforma de FacturaTech
-                reintentos=dbSqlite3.queryFacturaRetries(facturaNumero)
-                reintentos =  0 if reintentos == None else reintentos[0][0]
-                if reintentos == 0:
+                if reintentos < 0:
                     #"Pendiente de revisión"
                     dbSqlite3.insertUploadInvoiceRecord(facturaNumero,'FEIF', transactionID,'FE',totalFactura, reintentos)
                 else:
                     dbSqlite3.sqliteUpdateFacturaRetries(facturaNumero)
-                    if reintentos >= int(facturaRetries):
+                    if reintentos >= int(retriesFE):
                         #Establece en True campo exhaustRetries en Tabla totales de Access para que on siga intentando con esta factura
                         q_updateTotalesFacturaTeched.updateTotalesExhaustRetriesFT(facturaNumero)
                         dbSqlite3.sqliteUpdateExhaustRetriesFT(facturaNumero)
 
+        elif reintentos >= retriesFE:
+            txtlogs.writeLog(facturaNumero, f'Se alcanzó el número de reintentos máximo de la factura Target: {facturaNumero}')
         else:
             txtlogs.writeLog(facturaNumero, "qmsaccess_RetrievingQuery.py not get Factura")
     except Exception as e:
@@ -78,11 +86,12 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
                 Error Conecting to web service resource''' )
 
     else:
-        pass
+        print('Termina Ciclo de subida de Documento.  todo correcto pasa por ELSE')
         #If over a complete day, not has transmisión to FacturaTech mark Invoice to failed in msaccess Database
         #If retries is Not None
     finally:
-        print('Termina Ciclo de subida de Documento')
+        pass
+        #print('Termina Ciclo de subida de Documento.  todo correcto pasa por Finally')
 
 
 if __name__ == "__main__":
@@ -91,9 +100,9 @@ if __name__ == "__main__":
     #url, userPro, passPro = inisettings.ReadEndPointDemoData()
     while True:
         mainUploadInvoiceRoutine(url, userPro, passPro)
-        time.sleep(60)
-        print('Comienza conteo de Veinte mil segundos')
-        time.sleep(20000)
+        time.sleep(3)
+        #print('Comienza conteo de Veinte mil segundos')
+        #time.sleep(20000)
         #No necessary use of threads
         '''try:
             fe_upload_thread = threading.Thread(target=mainUploadInvoiceRoutine, args=(url, userPro, passPro),name='fe_upload_thread')

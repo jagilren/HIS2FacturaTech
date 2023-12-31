@@ -10,7 +10,7 @@ with codecs.open('config.txt', 'r', encoding='utf-8') as file:
         config = configparser.ConfigParser()
         config.read_file(file)
 #Pendiente de Revisión
-selectedSesion = 'CIA1'
+selectedSesion = 'CIA1'  # Producción
 
 NitEmisor = str(config.get(selectedSesion, 'NitEmisor'))
 digitoVerificador= str(config.get(selectedSesion, 'digitoVerificador'))
@@ -39,6 +39,7 @@ facturaFinal= str(config.get(selectedSesion, 'facturaFinal'))
 personaContacto= str(config.get(selectedSesion, 'personaContacto'))
 movilContacto= str(config.get(selectedSesion, 'movilContacto'))
 mailContacto= str(config.get(selectedSesion, 'mailContacto'))
+DireccionFisica= str(config.get(selectedSesion, 'DireccionFisica'))
 tzinfo = datetime.timezone.utc
 tzdelta= '-05:00'
 local_time=datetime.datetime.now()
@@ -132,7 +133,7 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
     ET.SubElement(adq, "ADQ_7").text = nombreAdquiriente  #Consumidor
     ET.SubElement(adq, "ADQ_8").text = nombreAdquiriente #Final
     ET.SubElement(adq, "ADQ_9").text = nombreAdquiriente #Final
-    ET.SubElement(adq, "ADQ_10").text ='Calle 51 # 70-01'  #Dirección del Adquiriente
+    ET.SubElement(adq, "ADQ_10").text =DireccionFisica  #Dirección del Adquiriente
     ET.SubElement(adq, "ADQ_11").text =codigoDepartamento  #Código del Departamento (Tabla 34)
     ET.SubElement(adq, "ADQ_13").text =nombreCiudad #
     ET.SubElement(adq, "ADQ_14").text =CodigoPostal  #

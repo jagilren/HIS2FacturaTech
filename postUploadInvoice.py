@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 import requests
 import q_updateTotalesFacturaTeched
 from inisettings import ReadEndPointProData, ReadEndPointDemoData
+import txtlogs
 
 # Define the headers for the POST request
 def postRequest(base64Invoice,facturaNumero,url, userPro, passPro):
@@ -40,6 +41,11 @@ def postRequest(base64Invoice,facturaNumero,url, userPro, passPro):
         if result_value_transaction:
             #Code for Update Field FacturaTeched in Table Totales DSNAccess2003
             q_updateTotalesFacturaTeched.updateTotalesFacturaTeched(facturaNumero)
+        else:
+            result_element_error = root.find(".//error")
+            print(f'Error al cargar la factura a plataforma: "{result_element_error.text}"')
+            txtlogs.writeLog(facturaNumero,
+                             f'Error al intentar subir fatura a plataforma FT: {result_element_error.text} ')
 
     else:
         pass
