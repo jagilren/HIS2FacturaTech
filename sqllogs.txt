@@ -1838,3 +1838,9 @@ Factura No pudos ser Cargada a plataforma Proveedor de Facturación Electrónica--
 Factura No pudos ser Cargada a plataforma Proveedor de Facturación Electrónica--Factura: 1998  2023-12-30 12:10:00.992985
 Factura No pudos ser Cargada a plataforma Proveedor de Facturación Electrónica--Factura: 1998  2023-12-30 12:10:05.946091
 Se alcanzó el número de reintentos máximo de la factura Target: 1997--Factura: 1997  2023-12-30 12:10:09.117600
+Se alcanzó el número de reintentos máximo de la factura Target: 1982--Factura: 1982  2024-01-02 10:19:10.266166
+Se alcanzó el número de reintentos máximo de la factura Target: 1982--Factura: 1982  2024-01-02 10:20:05.899275
+Se alcanzó el número de reintentos máximo de la factura Target: 1982--Factura: 1982  2024-01-02 10:21:28.586883
+Error al intentar subir fatura a plataforma FT: El número de transacciones permitidas para el folio FEIF1982 ha llegado al limite máximo.
+                        Ha realizado 4 intentos, contacte a soporte para más información. --Factura: 1982  2024-01-02 10:21:52.913009
+Factura No pudos ser Cargada a plataforma Proveedor de Facturación Electrónica--Factura: 1982  2024-01-02 10:21:57.023960

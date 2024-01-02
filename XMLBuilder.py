@@ -112,10 +112,10 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
 
     #Create and append the CDE element Información del Emisor Electrónico del Documento
     cde = ET.SubElement(emi, "CDE")
-    ET.SubElement(icc, "CDE_1").text = '1'  #Tipo de contacto (1-Persona de Contacto,2-Despacho ,3-Contabilidad ,4-Ventas
-    ET.SubElement(icc, "CDE_2").text = personaContacto  #Nombre y Cargo de la Persona de Contacto
-    ET.SubElement(icc, "CDE_3").text = movilContacto
-    ET.SubElement(icc, "CDE_4").text = mailContacto
+    ET.SubElement(cde, "CDE_1").text = '1'  #Tipo de contacto (1-Persona de Contacto,2-Despacho ,3-Contabilidad ,4-Ventas
+    ET.SubElement(cde, "CDE_2").text = personaContacto  #Nombre y Cargo de la Persona de Contacto
+    ET.SubElement(cde, "CDE_3").text = movilContacto
+    ET.SubElement(cde, "CDE_4").text = mailContacto
 
     #Create and append the GTE element Información del Emisor Electrónico del Documento
     gte = ET.SubElement(emi, "GTE")
@@ -206,7 +206,7 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
         i +=1
         labelTIM = 'TIM' + str(i)
         labelTIM = ET.SubElement(root, "TIM")
-        ET.SubElement(labelTIM, "TIM_1").text = 'FALSE'  # True: Retencio, False:Impuesto
+        ET.SubElement(labelTIM, "TIM_1").text = 'false'  # True: Retencion, false:Impuesto
         ET.SubElement(labelTIM, "TIM_2").text = str(round(sumaImpuestos,2))  # Suma de todos los IMP_4 con Impuestos(IMP_1)
         ET.SubElement(labelTIM, "TIM_3").text = currencyType  # Tipo de Moneda (Ver Tabla 13)
         #ET.SubElement(labelTIM, "TIM_4").text = strImpuesto + ' DEBUG' # Temporal solo para DEBUG
