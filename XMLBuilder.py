@@ -203,25 +203,26 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
         for lineas,lineasImpuesto in dictLineas.items():
                 sumaImpuestos= sumaImpuestos + lineasImpuesto['impuesto']
                 sumaBases = sumaBases + lineasImpuesto[ 'base' ]
-        i +=1
-        labelTIM = 'TIM' + str(i)
-        labelTIM = ET.SubElement(root, "TIM")
-        ET.SubElement(labelTIM, "TIM_1").text = 'false'  # True: Retencion, false:Impuesto
-        ET.SubElement(labelTIM, "TIM_2").text = str(round(sumaImpuestos,2))  # Suma de todos los IMP_4 con Impuestos(IMP_1)
-        ET.SubElement(labelTIM, "TIM_3").text = currencyType  # Tipo de Moneda (Ver Tabla 13)
-        #ET.SubElement(labelTIM, "TIM_4").text = strImpuesto + ' DEBUG' # Temporal solo para DEBUG
+        if (sumaImpuestos and sumaBases > 0): # Los impuestos globales IVA19 and IC08 deben tener valor > en Base e Impuesto, para que no se genere error
+            i +=1
+            labelTIM = 'TIM' + str(i)
+            labelTIM = ET.SubElement(root, "TIM")
+            ET.SubElement(labelTIM, "TIM_1").text = 'false'  # True: Retencion, false:Impuesto
+            ET.SubElement(labelTIM, "TIM_2").text = str(round(sumaImpuestos,2))  # Suma de todos los IMP_4 con Impuestos(IMP_1)
+            ET.SubElement(labelTIM, "TIM_3").text = currencyType  # Tipo de Moneda (Ver Tabla 13)
+            #ET.SubElement(labelTIM, "TIM_4").text = strImpuesto + ' DEBUG' # Temporal solo para DEBUG
 
-        #TAG IMP, Si Hubiera IVAs con diferente tarifa O VARIOS IC con diferente tarifa aplicaría varios IMP's pero nosotros solo usamos IVA19, por tango aplica un sólo IMP.
-        labelIMP= 'IMP' + str(i)
-        labelIMP = ET.SubElement(labelTIM, "IMP")
-        IMP1='01' if strImpuesto=='IVA19' else '02'
-        IMP6 = '19.00' if strImpuesto == 'IVA19' else '8.00'
-        ET.SubElement(labelIMP,'IMP_1').text = IMP1 #Tipo de Retencion(Tabla 44) 01:IVA, 02:IC
-        ET.SubElement(labelIMP, 'IMP_2').text = str(sumaBases) #Base Imponible (Suma de todos las bases a nivel Item (IIM_4), TAG mas abajo Hijo de ITEMS)
-        ET.SubElement(labelIMP, 'IMP_3').text = currencyType # Tipo de Moneda
-        ET.SubElement(labelIMP, 'IMP_4').text = str(sumaImpuestos)  #  Impuesto (Suma de todos las bases a nivel Item (IIM_4)*Impuesto en común (IMP_6)/100)
-        ET.SubElement(labelIMP, 'IMP_5').text = currencyType     # Tipo de Moneda
-        ET.SubElement(labelIMP, 'IMP_6').text = IMP6 # Tarifa del Tributo* (Porcentaje)
+            #TAG IMP, Si Hubiera IVAs con diferente tarifa O VARIOS IC con diferente tarifa aplicaría varios IMP's pero nosotros solo usamos IVA19, por tango aplica un sólo IMP.
+            labelIMP= 'IMP' + str(i)
+            labelIMP = ET.SubElement(labelTIM, "IMP")
+            IMP1='01' if strImpuesto=='IVA19' else '02'
+            IMP6 = '19.00' if strImpuesto == 'IVA19' else '8.00'
+            ET.SubElement(labelIMP,'IMP_1').text = IMP1 #Tipo de Retencion(Tabla 44) 01:IVA, 02:IC
+            ET.SubElement(labelIMP, 'IMP_2').text = str(sumaBases) #Base Imponible (Suma de todos las bases a nivel Item (IIM_4), TAG mas abajo Hijo de ITEMS)
+            ET.SubElement(labelIMP, 'IMP_3').text = currencyType # Tipo de Moneda
+            ET.SubElement(labelIMP, 'IMP_4').text = str(sumaImpuestos)  #  Impuesto (Suma de todos las bases a nivel Item (IIM_4)*Impuesto en común (IMP_6)/100)
+            ET.SubElement(labelIMP, 'IMP_5').text = currencyType     # Tipo de Moneda
+            ET.SubElement(labelIMP, 'IMP_6').text = IMP6 # Tarifa del Tributo* (Porcentaje)
 
 
 

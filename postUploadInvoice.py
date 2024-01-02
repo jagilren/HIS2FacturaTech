@@ -45,7 +45,7 @@ def postRequest(base64Invoice,facturaNumero,url, userPro, passPro):
             result_element_error = root.find(".//error")
             print(f'Error al cargar la factura a plataforma: "{result_element_error.text}"')
             txtlogs.writeLog(facturaNumero,
-                             f'Error al intentar subir fatura a plataforma FT: {result_element_error.text} ')
+                             f'Error al intentar subir factura a plataforma FT: {result_element_error.text} ')
 
     else:
         pass

@@ -1,7 +1,7 @@
 import pyodbc
 from decimal import Decimal
 
-facturaNumero= 1299.0
+#facturaNumero= 1299.0
 outlaw=0
 
 def RetrieveTotals(facturaNumero):
@@ -66,7 +66,7 @@ def RetrieveTotals(facturaNumero):
         conn1.close()
     return dictGroups, dictTotals, totalFactura
 
-dict1, dict2, totalFactura=RetrieveTotals(facturaNumero)
+#dict1, dict2, totalFactura=RetrieveTotals(facturaNumero)
 #print('Diccionario1 keys', list(dict1.keys()))
 #print('Diccionario1 pairs', dict1.items())
 #print('Diccionario2',dict2)
