@@ -1,13 +1,18 @@
 import pyodbc
 import txtlogs
 
-conn = pyodbc.connect('DSN=access2003DSN;')
+
 # Create a cursor
-cursor1 = conn.cursor()
-boolfacturaTeched = -1
 
 
 def updateTotalesFacturaTeched(facturaNumero):
+    try:
+        conn = pyodbc.connect('DSN=access2003DSN;')
+        cursor1 = conn.cursor()
+        boolfacturaTeched = -1
+    except:
+        pass
+
     try:
 
         # Execute a SQL query

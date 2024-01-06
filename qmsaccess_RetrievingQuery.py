@@ -16,8 +16,9 @@ def traeFactura():
         query = '''SELECT  [NUMERO FACTURA]  FROM [TOTALES] WHERE [TOTALES].[ISFE]= -1 AND [TOTALES].[FacturaTeched]=0   
                 ORDER BY [TOTALES].[NUMERO FACTURA] ASC'''
         cursor.execute(query)
-        rows = cursor.fetchall()
-        facturaNumero: Decimal = Decimal(random.choice(rows)[ 0 ])
+        rows = cursor.fetchone()
+        facturaNumero: Decimal = Decimal(rows[0])
+        #facturaNumero: Decimal = Decimal(random.choice(rows)[ 0 ])
         #print(facturaNumero)
 
     except:

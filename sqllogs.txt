@@ -1846,3 +1846,32 @@ Error al intentar subir factura a plataforma FT: El nï¿½mero de transacciones pe
 Factura No pudos ser Cargada a plataforma Proveedor de Facturaciï¿½n Electrï¿½nica--Factura: 1982  2024-01-02 10:21:57.023960
 Error al intentar subir factura a plataforma FT: Error DIAN: Validaciï¿½n contiene errores en campos mandatorios., Errores: Regla: FAX02, Rechazo: El valor total del tributo  (01) (/Invoice/cac:InvoiceLine/cac:TaxTotal/cbc:TaxAmount) no corresponde a la suma de todas las informaciones correspondientes a cada una de las tarifas informadas en este documento para este tributo,Regla: FAS01a, Rechazo: Existe mas de un grupo con informacion de totales para un mismo tributo en la factura,Regla: FAD06, Rechazo: Valor del CUFE no estï¿½ calculado correctamente.,Regla: FAJ46, Notificaciï¿½n: No informado el literal ï¿½CO, DIAN (Direcciï¿½n de Impuestos y Aduanas Nacionales),Regla: FAJ23, Notificaciï¿½n: No informado el literal ï¿½CO, DIAN (Direcciï¿½n de Impuestos y Aduanas Nacionales)ï¿½,Regla: FAK46, Notificaciï¿½n: No informado el literal ï¿½CO, DIAN (Direcciï¿½n de Impuestos y Aduanas Nacionales),Regla: FAJ17, Notificaciï¿½n: Nombre del paï¿½s del emisor del documento NO corresponde al literal  ï¿½Colombiaï¿½,Regla: FAK23, Notificaciï¿½n: No informado el literal ï¿½CO, DIAN (Direcciï¿½n de Impuestos y Aduanas Nacionales)ï¿½,Regla: RUT01, Notificaciï¿½n: La validaciï¿½n del estado del RUT prï¿½ximamente estarï¿½ disponible.,Regla: RUT01, Notificaciï¿½n: La validaciï¿½n del estado del RUT prï¿½ximamente estarï¿½ disponible., Advertencias:  --Factura: 1982  2024-01-02 14:56:23.497263
 Factura No pudos ser Cargada a plataforma Proveedor de Facturaciï¿½n Electrï¿½nica--Factura: 1982  2024-01-02 14:56:59.727265
+Error al intentar subir factura a plataforma FT: El número de transacciones permitidas para el folio FEIF1982 ha llegado al limite máximo.
+                        Ha realizado 4 intentos, contacte a soporte para más información. --Factura: 1982  2024-01-03 08:32:17.890177
+Factura No pudos ser Cargada a plataforma Proveedor de Facturación Electrónica--Factura: 1982  2024-01-03 08:32:37.565450
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 2018  2024-01-03 19:45:36.626996
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 2018  2024-01-03 19:51:33.946089
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 2018  2024-01-03 19:52:55.571659
+Error main.mainUploadInvoiceRoutine 'NoneType' object has no attribute 'text'
+                Error Conecting to web service resource--Factura: 2018  2024-01-03 20:18:29.905095
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 2018  2024-01-03 20:25:59.041240
+Error main.mainUploadInvoiceRoutine '<' not supported between instances of 'int' and 'NoneType'
+                Error Conecting to web service resource--Factura: 2018  2024-01-04 18:17:38.544592
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 2018  2024-01-05 10:17:21.563990
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 2020  2024-01-05 18:45:58.995872
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 2021  2024-01-05 18:48:33.308667
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 2021  2024-01-05 18:48:45.459068
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 2021  2024-01-05 18:51:42.566445
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 2021  2024-01-05 18:51:50.889751
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 2021  2024-01-05 18:52:49.566363
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 2021  2024-01-05 18:53:51.922413
+q_updateTotalesFacturaTech-Attempt to use a closed cursor.--Factura: 2021  2024-01-05 18:57:23.173773
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 2021  2024-01-05 18:58:09.494988
+Factura subida correctamente a plataforma Proveedor de Facturación Electrónica--Factura: 2022  2024-01-05 19:00:29.363633
+qmsaccess_RetrievingQuery.py not get Factura--Factura: None  2024-01-05 19:01:16.246748
+numerofactura is None  The value of numeroFactura is None. Please provide a valid value.
+                threading continues--Factura: None  2024-01-05 19:12:56.442399
+numerofactura is None  The value of numeroFactura is None. Please provide a valid value.
+                threading continues--Factura: None  2024-01-05 19:13:52.131879
+numerofactura is None  The value of numeroFactura is None. Please provide a valid value.
+                threading continues--Factura: None  2024-01-05 19:15:08.558341

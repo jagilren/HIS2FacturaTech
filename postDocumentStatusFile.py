@@ -38,18 +38,18 @@ def postRequest(transactionID,url, userPro, passPro):
 
     # Check the response status and content
     if response.status_code == 200:
-        #print(response.text)
+        print(response.text)
         #print(response.status_code)
         #print("Request succeeded. Response content:")
         root = ET.fromstring(response.text)
 
         result_code = root.find(".//code")
-        result_sucess = root.find(".//sucess")
+        result_success = root.find(".//success")
         result_status = root.find(".//status")
         result_error = root.find(".//error")
 
         result_code_text = result_code.text
-        #result_sucess_text = result_sucess.text
+        result_success_text = result_success.text
         result_status_text = result_status.text
         result_error_text = result_error.text
 

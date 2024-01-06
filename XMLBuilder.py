@@ -215,12 +215,12 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
             #TAG IMP, Si Hubiera IVAs con diferente tarifa O VARIOS IC con diferente tarifa aplicaría varios IMP's pero nosotros solo usamos IVA19, por tango aplica un sólo IMP.
             labelIMP= 'IMP' + str(i)
             labelIMP = ET.SubElement(labelTIM, "IMP")
-            IMP1='01' if strImpuesto=='IVA19' else '02'
+            IMP1='01' if strImpuesto=='IVA19' else '04' #Tipo de Impuestos (Tabla 44) 01:IVA, 04:INC Impuesto nacional al consumo
             IMP6 = '19.00' if strImpuesto == 'IVA19' else '8.00'
-            ET.SubElement(labelIMP,'IMP_1').text = IMP1 #Tipo de Retencion(Tabla 44) 01:IVA, 02:IC
-            ET.SubElement(labelIMP, 'IMP_2').text = str(sumaBases) #Base Imponible (Suma de todos las bases a nivel Item (IIM_4), TAG mas abajo Hijo de ITEMS)
+            ET.SubElement(labelIMP,'IMP_1').text = IMP1 #Tipo de Retencion(Tabla 44) 01:IVA, 04:INC Impuesto nacional al consumo
+            ET.SubElement(labelIMP, 'IMP_2').text = str(round(sumaBases,2)) #Base Imponible (Suma de todos las bases a nivel Item (IIM_4), TAG mas abajo Hijo de ITEMS)
             ET.SubElement(labelIMP, 'IMP_3').text = currencyType # Tipo de Moneda
-            ET.SubElement(labelIMP, 'IMP_4').text = str(sumaImpuestos)  #  Impuesto (Suma de todos las bases a nivel Item (IIM_4)*Impuesto en común (IMP_6)/100)
+            ET.SubElement(labelIMP, 'IMP_4').text = str(round(sumaImpuestos,2))  #  Impuesto (Suma de todos las bases a nivel Item (IIM_4)*Impuesto en común (IMP_6)/100)
             ET.SubElement(labelIMP, 'IMP_5').text = currencyType     # Tipo de Moneda
             ET.SubElement(labelIMP, 'IMP_6').text = IMP6 # Tarifa del Tributo* (Porcentaje)
 
@@ -245,23 +245,23 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
     i=1
     for strImpuesto, dictLineas  in dictGroups.items():
         for lineas,lineasInfoFiscal in dictLineas.items():
-            IIM1 = '01' if strImpuesto == 'IVA19' else '02'
+            IIM1 = '01' if strImpuesto == 'IVA19' else '04' #Get in table 44 Anexo 1.8 Excel Tables
             IIM6 = '19.00' if strImpuesto == 'IVA19' else '8.00'
             labelITEM= 'labelITEM' + str(i)
             labelITEM = ET.SubElement(root, "ITE")
             ET.SubElement(labelITEM,"ITE_1").text = str(i)  #Número de Item
             ET.SubElement(labelITEM,"ITE_3").text = '1.0000'  #Cantidad de Producto
             ET.SubElement(labelITEM,"ITE_4").text = '94'  #Unidad de Medida de los bienes
-            ET.SubElement(labelITEM,"ITE_5").text = str(lineasInfoFiscal['base'])  #COSTO_TOTAL (ITE_5= (ITE 27*ITE_7)-Descuentos a nivel Ítem (IDE) +Cargos a nivel Ítem (IDE)
+            ET.SubElement(labelITEM,"ITE_5").text = str(round(lineasInfoFiscal['base'],2))  #COSTO_TOTAL (ITE_5= (ITE 27*ITE_7)-Descuentos a nivel Ítem (IDE) +Cargos a nivel Ítem (IDE)
             ET.SubElement(labelITEM,"ITE_6").text = currencyType  #Tipo de Moneda
-            ET.SubElement(labelITEM,"ITE_7").text = str(lineasInfoFiscal['base'])  #Precio Unitario
+            ET.SubElement(labelITEM,"ITE_7").text = str(round(lineasInfoFiscal['base'],2))  #Precio Unitario
             ET.SubElement(labelITEM,"ITE_8").text = currencyType  #Tipo de Moneda
             ET.SubElement(labelITEM,"ITE_11").text = lineas  #Descripción
-            ET.SubElement(labelITEM,"ITE_19").text = str(lineasInfoFiscal['base'])  #Total del ítem (incluyendo Descuentos y cargos) * (ITE_19 = (ITE 27*ITE_7)-Descuentos a nivel Ítem (IDE) +Cargos a nivel Ítem (IDE))
+            ET.SubElement(labelITEM,"ITE_19").text = str(round(lineasInfoFiscal['base'],2))  #Total del ítem (incluyendo Descuentos y cargos) * (ITE_19 = (ITE 27*ITE_7)-Descuentos a nivel Ítem (IDE) +Cargos a nivel Ítem (IDE))
             ET.SubElement(labelITEM,"ITE_20").text = currencyType  #Tipo de Moneda*
-            ET.SubElement(labelITEM,"ITE_21").text = str(lineasInfoFiscal['base']+lineasInfoFiscal['impuesto'])   #Valor a Pagar del Item* (ITE_21= ITE_19+Suma de todos los Impuestos (IIM_2) a nivel Ítem)
+            ET.SubElement(labelITEM,"ITE_21").text = str(round(lineasInfoFiscal['base']+lineasInfoFiscal['impuesto'],2))   #Valor a Pagar del Item* (ITE_21= ITE_19+Suma de todos los Impuestos (IIM_2) a nivel Ítem)
             ET.SubElement(labelITEM,"ITE_22").text = currencyType  #Tipo de Moneda*
-            ET.SubElement(labelITEM,"ITE_23").text = str(lineasInfoFiscal['base'])  #Precio Unitario
+            ET.SubElement(labelITEM,"ITE_23").text = str(round(lineasInfoFiscal['base'],2))  #Precio Unitario
             ET.SubElement(labelITEM,"ITE_24").text = currencyType  #Tipo de Moneda*
             ET.SubElement(labelITEM,"ITE_27").text = '1'  #La cantidad real sobre la cual el precio aplica
             ET.SubElement(labelITEM,"ITE_28").text = '94'  #Unidad de medida de la cantidad del artículo solicitado
@@ -276,17 +276,17 @@ def generateXML(xmlfile,facturaNumero,totalFactura,totalItems, *diccionarios1):
             # Create and append tag TII  SON  of ITE element  Total de retenciones del Item
             infoRetenciones= 'infoRETENCIONES' + str(i)
             infoRetenciones = ET.SubElement(labelITEM, "TII")
-            ET.SubElement(infoRetenciones, "TII_1").text = str(lineasInfoFiscal['base'])  # (IIM_4 * IIM_6)/100
+            ET.SubElement(infoRetenciones, "TII_1").text = str(round(lineasInfoFiscal['impuesto'],2))  # (IIM_4 * IIM_6)/100
             ET.SubElement(infoRetenciones, "TII_2").text = currencyType   # Tipo de Moneda
             ET.SubElement(infoRetenciones, "TII_3").text = 'false'  # Bandera de Impuesto o Retención (true-retención/false-impuesto)
 
             # Create and append tag IIM  SON  of TII element  Total de Retenciones del Item
             infoTaxSingle= 'infoTaxSingle' + str(i)
             infoTaxSingle = ET.SubElement(infoRetenciones, "IIM")
-            ET.SubElement(infoTaxSingle, "IIM_1").text = IIM1  #  Tipo de Retención (Tabla 44) 01:IVA, 02:IC
-            ET.SubElement(infoTaxSingle, "IIM_2").text = str(lineasInfoFiscal['impuesto'])   # Retención ((IIM_4*IIM_6) /100)
+            ET.SubElement(infoTaxSingle, "IIM_1").text = IIM1  #  Tipo de Retención (Tabla 44) 01:IVA, 04:IC
+            ET.SubElement(infoTaxSingle, "IIM_2").text = str(round(lineasInfoFiscal['impuesto'],2))   # Retención ((IIM_4*IIM_6) /100)
             ET.SubElement(infoTaxSingle, "IIM_3").text = currencyType  #  Tipo de Moneda
-            ET.SubElement(infoTaxSingle, "IIM_4").text = str(lineasInfoFiscal['base'])  # Base Imponible (Igual a ITE_5)
+            ET.SubElement(infoTaxSingle, "IIM_4").text = str(round(lineasInfoFiscal['base'],2))  # Base Imponible (Igual a ITE_5)
             ET.SubElement(infoTaxSingle, "IIM_5").text = currencyType  # Tipo de Moneda
             ET.SubElement(infoTaxSingle, "IIM_6").text = IIM6  # Tarifa del Tributo*(Porcentaje)
 

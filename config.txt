@@ -12,8 +12,8 @@ max_retries_nc = 200
 [EndpointPro]
 urlPro = https://ws.facturatech.co/v2/pro/
 urlPro1 = https://ws.facturatech.co/v2/pro/index.php?wsdl
-userPro = 811014293
-passPro = bbfc4538a0fbb92eab324771727f183054374195ca0cd331eda68d421da50ac2
+userPro = 811014293_2
+passPro = e6f63c443fd7dfe7992fbafb2f7d432847a697d9a7ea5b84bcb2fd9232cf79cd
 
 [EndpointDemo]
 urlDemo = https://ws.facturatech.co/v2/demo/

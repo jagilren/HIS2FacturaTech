@@ -17,9 +17,8 @@ def getfacturaNumero():
     return facturaNumero
 
 
-def getDocumentRetries():
+def getDocumentRetries(facturaNumero):
     try:
-        facturaNumero= getfacturaNumero()
         # Query retries for upload  Invoice to Electronic Operator. FacturaTech
         #facturaRetries = dbSqlite3.queryFacturaRetries(facturaNumero) if dbSqlite3.queryFacturaRetries(facturaNumero) != None else 0
         # Get value of retries parameters from CONFIG.INI file
@@ -42,7 +41,9 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
     try:
         xmlfile = 'outputxml1.xml'
         facturaNumero = getfacturaNumero()
-        retriesFE, retriesNC = getDocumentRetries()
+        if facturaNumero is None:
+            raise ValueError("The value of numeroFactura is None. Please provide a valid value.")
+        retriesFE, retriesNC = getDocumentRetries(facturaNumero)
         reintentos = getReintentosUploaadFactura(facturaNumero)
         reintentos = -1 if reintentos is None else reintentos
         #Verifythat factura exist and retries is in aceptable boundaries
@@ -63,7 +64,7 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
                 else:
                     respuestaFalsePositivo = sendEmailTruePositivo(facturaNumero, transactionID, postStatusCode)
                     txtlogs.writeLog(facturaNumero,
-                                     f'Factura No pudos ser Cargada a plataforma Proveedor de Facturación Electrónica')
+                                     f'Factura No pudo ser Cargada a plataforma Proveedor de Facturación Electrónica')
                 #Revisa cuantas veces se ha reintentado subir la factura a Plataforma de FacturaTech
                 if reintentos < 0:
                     #"Pendiente de revisión"
@@ -79,12 +80,15 @@ def mainUploadInvoiceRoutine(url, userPro, passPro):
             txtlogs.writeLog(facturaNumero, f'Se alcanzó el número de reintentos máximo de la factura Target: {facturaNumero}')
         else:
             txtlogs.writeLog(facturaNumero, "qmsaccess_RetrievingQuery.py not get Factura")
+    except ValueError as ve:
+        logging.error(f"Warning.  No left facturas for uploadInvoiceFile: {str(ve)}")
+        txtlogs.writeLog(facturaNumero,f'''numerofactura is None  {str(ve)}
+                threading continues''' )
     except Exception as e:
         logging.error(f"An unexpected error occurred in FacturaTech Service: {str(e)}")
         facturaNumero = facturaNumero
         txtlogs.writeLog(facturaNumero,f'''Error main.mainUploadInvoiceRoutine {str(e)}
                 Error Conecting to web service resource''' )
-
     else:
         print('Termina Ciclo de subida de Documento.  todo correcto pasa por ELSE')
         #If over a complete day, not has transmisión to FacturaTech mark Invoice to failed in msaccess Database
